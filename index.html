@@ -1,8 +1,30 @@
-<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-
-<ruffle-player
-  src="https://cst1229.eu.org/TBCAMuseum-builds/scratch2/Scratch%20v461%20(2).swf"
-  width="800"
-  height="600"
-  flashvars="project=https://example.com/project.sb2">
-</ruffle-player>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Scratch 2 Loader</title>
+  <script src="./ruffle.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      display: grid;
+      place-items: center;
+      height: 100vh;
+    }
+    ruffle-player {
+      width: 800px;
+      height: 600px;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <ruffle-player
+    src="https://cst1229.eu.org/TBCAMuseum-builds/scratch2/Scratch%20v461%20(2).swf"
+    width="800"
+    height="600"
+    flashvars="project=https%3A%2F%2Fnewgoogledrive.github.io%2Fscratch2test%2Fproject.sb2">
+  </ruffle-player>
+</body>
+</html>
