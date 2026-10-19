@@ -1,24 +1,11 @@
-<script src="./ruffle.js"></script>
-<div id="game"></div>
-
 <script>
-  window.RufflePlayer = window.RufflePlayer || {};
-
-  window.addEventListener("load", () => {
-    const ruffle = window.RufflePlayer.newest();
-    const player = ruffle.createPlayer();
-
-    player.style.width = "800px";
-    player.style.height = "600px";
-
-    document.getElementById("game").appendChild(player);
-
-    player.load({
-      url: "https://cst1229.eu.org/TBCAMuseum-builds/scratch2/Scratch%20v461%20(2).swf",
-      parameters: {
-        project: "https://newgoogledrive.github.io/scratch2test/project.sb2"
-      },
-      autoplay: true
+    window.RufflePlayer = window.RufflePlayer || {};
+    window.addEventListener("load", (event) => {
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+        const container = document.getElementById("container");
+        container.appendChild(player);
+        player.ruffle().load("https://cst1229.eu.org/TBCAMuseum-builds/scratch2/Scratch%20v461%20(2).swf");
     });
-  });
 </script>
+<script src="./ruffle.js"></script>
