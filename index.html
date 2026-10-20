@@ -1,21 +1,52 @@
 <body>
-      <h1>scratch 2 project test!</h1>
-      <p>this is a test where i used ruffle on the scratch 2 player and made a smaple project. it works!</p>
-      <div id="container" style="width: 550px; height: 400px;"></div>
-<script>
-    
+  <h1>scratch 2 project test!</h1>
+  <p>this is a test where i used ruffle on the scratch 2 player and made a smaple project. it works!</p>
+
+  <div style="margin-bottom: 12px;">
+    <input id="sb2Input" type="file" accept=".sb2" />
+    <button id="loadBtn" type="button">Load custom .sb2</button>
+  </div>
+
+  <div id="container" style="width: 700px; height: 500px; border: 1px solid #ccc;"></div>
+
+  <script>
     window.RufflePlayer = window.RufflePlayer || {};
-      window.RufflePlayer.config = {
-            "autoplay": "on",
-            "unmuteOverlay":"hidden"
-      };
-    window.addEventListener("load", (event) => {
+    window.RufflePlayer.config = {
+      "autoplay": "on",
+      "unmuteOverlay": "hidden"
+    };
+
+    const playerURL = "https://cst1229.eu.org/TBCAMuseum-builds/scratch2/Scratch%20v461%20(2).swf";
+    let player;
+
+    function loadProject(projectUrl) {
+      const container = document.getElementById("container");
+
+      if (!player) {
         const ruffle = window.RufflePlayer.newest();
-        const player = ruffle.createPlayer();
-        const container = document.getElementById("container");
+        player = ruffle.createPlayer();
         container.appendChild(player);
-        player.ruffle().load("https://cst1229.eu.org/TBCAMuseum-builds/scratch2/Scratch%20v461%20(2).swf?project=./project.sb2");
+      }
+
+      // Load the Scratch 2 player with the project passed in the query string
+      player.ruffle().load(playerURL + "?project=" + encodeURIComponent(projectUrl));
+    }
+
+    document.getElementById("loadBtn").addEventListener("click", () => {
+      const file = document.getElementById("sb2Input").files[0];
+      if (!file) {
+        alert("Choose an .sb2 file first.");
+        return;
+      }
+
+      const projectUrl = URL.createObjectURL(file);
+      loadProject(projectUrl);
     });
-</script>
-<script src="./ruffle.js"></script>
+
+    window.addEventListener("load", () => {
+      loadProject("./project.sb2");
+    });
+  </script>
+
+  <script src="./ruffle.js"></script>
 </body>
